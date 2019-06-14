@@ -82,9 +82,4 @@ SELECT name, continent,  population FROM world x
 SELECT name, continent FROM world x
   WHERE population >= ALL(SELECT population*3 FROM world y
       WHERE y.continent=x.continent
-          AND population>0 AND name NOT IN 
-            (SELECT name FROM world z WHERE 
-                population >= ALL(SELECT population 
-                   FROM world t WHERE 
-                      t.continent=z.continent AND 
-                         population>0)))
+          AND population>0 AND x.name <> y.name);
